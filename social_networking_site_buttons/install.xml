@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[Social Networking Site Buttons]]></title>
+		<description lang="en"><![CDATA[Adds new links/buttons on the user profile:
+Bebo 
+Blogger 
+Facebook 
+GoodReads 
+LinkedIn 
+MySpace 
+NetLog 
+Twitter]]></description>
+		<author-notes lang="en"><![CDATA[If you want to contribute to the development of this MOD, consider making a donation visiting: http://goo.gl/erGPa]]></author-notes>
+		<author-group>
+			<author>
+				<realname><![CDATA[Marcus Vinicius]]></realname>
+				<username><![CDATA[_Vinny_]]></username>
+				<homepage><![CDATA[http://www.suportephpbb.com.br]]></homepage>
+				<email><![CDATA[vinny@suportephpbb.com.br]]></email>
+				<contributions-group>
+					<contributions status="current" from="2011-12-24" position="Current Developer"/>
+				</contributions-group>
+			</author>
+			<author>
+				<realname><![CDATA[Jaymie Meeley]]></realname>
+				<username><![CDATA[Jaymie1989]]></username>
+				<homepage><![CDATA[http://www.jaymie1989.co.uk/]]></homepage>
+				<email><![CDATA[Jaymie-1989@hotmail.co.uk]]></email>
+				<contributions-group>
+					<contributions status="past" position="Former Developer"/>
+				</contributions-group>
+			</author>
+			<author>
+				<realname><![CDATA[Mikkel koch]]></realname>
+				<username><![CDATA[DoYouSpeakWak]]></username>
+				<homepage><![CDATA[http://www.phpbb3premods.com/]]></homepage>
+				<email><![CDATA[dysw@hushmail.com]]></email>
+				<contributions-group>
+					<contributions status="past" position="Former Developer"/>
+				</contributions-group>
+			</author>
+			<author>
+				<realname><![CDATA[Kelly DeLuca]]></realname>
+				<username><![CDATA[KellyBean]]></username>
+				<homepage><![CDATA[http://www.delflo.com/]]></homepage>
+				<email><![CDATA[kellydeluca@gmail.com]]></email>
+				<contributions-group>
+					<contributions status="past" position="Former Developer"/>
+				</contributions-group>
+			</author>
+		</author-group>
+		<mod-version>1.0.0</mod-version>
+		<installation>
+			<level>intermediate</level>
+			<time>600</time>
+			<target-version>3.0.10</target-version>
+		</installation>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/language/en/mods/social_networking_buttons.php" to="language/en/mods/social_networking_buttons.php"/>
+			<file from="root/styles/prosilver/imageset/*.*" to="styles/prosilver/imageset/*.*"/>
+			<file from="root/styles/prosilver/theme/social_networking_buttons.css" to="styles/prosilver/theme/social_networking_buttons.css"/>
+			<file from="root/umil/*.*" to="umil/*.*"/>
+			<file from="root/install_social_networking_site_buttons.php" to="install_social_networking_site_buttons.php"/>
+		</copy>
+		<open src="memberlist.php">
+			<edit>
+				<find><![CDATA[$user->setup(array('memberlist', 'groups'));]]></find>
+				<action type="after-add"><![CDATA[$user->add_lang('mods/social_networking_buttons');]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[		'L_VIEWING_PROFILE'	=> sprintf($user->lang['VIEWING_PROFILE'], $username),]]></find>
+				<action type="after-add"><![CDATA[
+		'USER_BEBO_SN'		=> $data['user_bebo'],
+		'U_BEBO_SN'			=> ($data['user_bebo']) ? 'http://bebo.com/' . urlencode($data['user_bebo']) : '',
+		'USER_BLOGGER_SN'	=> $data['user_blogger'],
+		'U_BLOGGER_SN'		=> ($data['user_blogger']) ? urlencode($data['user_blogger']) : '',
+		'USER_FACEBOOK_SN'	=> $data['user_facebook'],
+		'U_FACEBOOK_SN'		=> ($data['user_facebook']) ? urlencode($data['user_facebook']) : '',
+		'USER_GOODREADS_SN'	=> $data['user_goodreads'],
+		'U_GOODREADS_SN'	=> ($data['user_goodreads']) ? urlencode($data['user_goodreads']) : '',
+		'USER_LINKEDIN_SN'	=> $data['user_linkedin'],
+		'U_LINKEDIN_SN'		=> ($data['user_linkedin']) ? urlencode($data['user_linkedin']) : '',
+		'USER_MYSPACE_SN'	=> $data['user_myspace'],
+		'U_MYSPACE_SN'		=> ($data['user_myspace']) ? 'http://www.myspace.com/' . urlencode($data['user_myspace']) : '',
+		'USER_NETLOG_SN'	=> $data['user_netlog'],
+		'U_NETLOG_SN'		=> ($data['user_netlog']) ? urlencode($data['user_netlog']) : '',
+		'USER_TWITTER_SN'	=> $data['user_twitter'],
+		'U_TWITTER_SN'		=> ($data['user_twitter']) ? 'http://www.twitter.com/' . urlencode($data['user_twitter']) : '',]]></action>
+			</edit>
+		</open>
+		<open src="viewtopic.php">
+			<edit>
+				<find><![CDATA[	'U_BUMP_TOPIC'			=> (bump_topic_allowed($forum_id, $topic_data['topic_bumped'], $topic_data['topic_last_post_time'], $topic_data['topic_poster'], $topic_data['topic_last_poster_id'])) ? append_sid("{$phpbb_root_path}posting.$phpEx", "mode=bump&amp;f=$forum_id&amp;t=$topic_id&amp;hash=" . generate_link_hash("topic_$topic_id")) : '')
+);]]></find>
+				<action type="after-add"><![CDATA[$user->add_lang('mods/social_networking_buttons');
+$template->assign_var('BEBO_IMG', $user->img('icon_contact_bebo', 'BEBO'));
+$template->assign_var('BLOGGER_IMG', $user->img('icon_contact_blogger', 'BLOGGER'));
+$template->assign_var('FACEBOOK_IMG', $user->img('icon_contact_fb', 'FACEBOOK'));
+$template->assign_var('GOODREADS_IMG', $user->img('icon_contact_gr', 'GOODREADS'));
+$template->assign_var('LINKEDIN_IMG', $user->img('icon_contact_li', 'LINKEDIN'));
+$template->assign_var('MYSPACE_IMG', $user->img('icon_contact_ms', 'MYSPACE'));
+$template->assign_var('NETLOG_IMG', $user->img('icon_contact_netlog', 'NETLOG'));
+$template->assign_var('TWITTER_IMG', $user->img('icon_contact_twit', 'TWITTER'));]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[				'allow_pm'			=> 0,
+			);]]></find>
+				<action type="after-add"><![CDATA[$user_cache[$poster_id]['bebo'] = '';
+$user_cache[$poster_id]['blogger'] = '';
+$user_cache[$poster_id]['facebook'] = '';
+$user_cache[$poster_id]['goodreads'] = '';
+$user_cache[$poster_id]['linkedin'] = '';
+$user_cache[$poster_id]['myspace'] = '';
+$user_cache[$poster_id]['netlog'] = '';
+$user_cache[$poster_id]['twitter'] = '';]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[				'author_profile'	=> get_username_string('profile', $poster_id, $row['username'], $row['user_colour']),
+			);]]></find>
+				<action type="after-add"><![CDATA[
+			$user_cache[$poster_id]['bebo'] = urlencode($row['user_bebo']);
+			$user_cache[$poster_id]['blogger'] = $row['user_blogger'];
+			$user_cache[$poster_id]['facebook'] = $row['user_facebook'];
+			$user_cache[$poster_id]['goodreads'] = $row['user_goodreads'];
+			$user_cache[$poster_id]['linkedin'] = $row['user_linkedin'];
+			$user_cache[$poster_id]['myspace'] = urlencode($row['user_myspace']);
+			$user_cache[$poster_id]['netlog'] = $row['user_netlog'];
+			$user_cache[$poster_id]['twitter'] = urlencode($row['user_twitter']);]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[		'L_IGNORE_POST'		=> ($row['hide_post']) ? sprintf($user->lang['POST_BY_FOE'], get_username_string('full', $poster_id, $row['username'], $row['user_colour'], $row['post_username']), '<a href="' . $viewtopic_url . "&amp;p={$row['post_id']}&amp;view=show#p{$row['post_id']}" . '">', '</a>') : '',
+	);]]></find>
+				<action type="after-add"><![CDATA[
+	$postrow['U_BEBO_SN'] = $user_cache[$poster_id]['bebo'];
+	$postrow['U_BLOGGER_SN'] = $user_cache[$poster_id]['blogger'];
+	$postrow['U_FACEBOOK_SN'] = $user_cache[$poster_id]['facebook'];
+	$postrow['U_GOODREADS_SN'] = $user_cache[$poster_id]['goodreads'];
+	$postrow['U_LINKEDIN_SN'] = $user_cache[$poster_id]['linkedin'];
+	$postrow['U_MYSPACE_SN'] = $user_cache[$poster_id]['myspace'];
+	$postrow['U_NETLOG_SN'] = $user_cache[$poster_id]['netlog'];
+	$postrow['U_TWITTER_SN'] = $user_cache[$poster_id]['twitter'];]]></action>
+			</edit>
+		</open>
+		<open src="adm/style/acp_users_profile.html">
+			<edit>
+				<find><![CDATA[		<dd><input type="text" id="jabber" name="jabber" value="{JABBER}" /></dd>
+	</dl>]]></find>
+				<action type="after-add"><![CDATA[	<dl>
+		<dt><label for="bebo">{L_UCP_BEBO}:</label></dt>
+		<dd><input type="text" name="bebo" id="bebo" value="{BEBO}" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="blogger">{L_UCP_BLOGGER}:</label></dt>
+		<dd><input type="text" name="blogger" id="blogger" value="{BLOGGER}" /></dd>
+	</dl>		
+	<dl>
+		<dt><label for="facebook">{L_UCP_FACEBOOK}:</label></dt>
+		<dd><input type="text" name="facebook" id="facebook" value="{FACEBOOK}" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="goodreads">{L_UCP_GOODREADS}:</label></dt>
+		<dd><input type="text" name="goodreads" id="goodreads" value="{GOODREADS}" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="linkedin">{L_UCP_LINKEDIN}:</label></dt>
+		<dd><input type="text" name="linkedin" id="linkedin" value="{LINKEDIN}" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="myspace">{L_UCP_MYSPACE}:</label></dt>
+		<dd><input type="text" name="myspace" id="myspace" value="{MYSPACE}" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="netlog">{L_UCP_NETLOG}:</label></dt>
+		<dd><input type="text" name="netlog" id="netlog" value="{NETLOG}" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="twitter">{L_UCP_TWITTER}:</label></dt>
+		<dd><input type="text" name="twitter" id="twitter" value="{TWITTER}" /></dd>
+	</dl>]]></action>
+			</edit>
+		</open>
+		<open src="includes/acp/acp_styles.php">
+			<edit>
+				<find><![CDATA[		);]]></find>
+				<action type="after-add"><![CDATA[
+		$user->add_lang('mods/social_networking_buttons');
+		$this->imageset_keys['icons'][] = 'icon_contact_bebo';
+		$this->imageset_keys['icons'][] = 'icon_contact_blogger';
+		$this->imageset_keys['icons'][] = 'icon_contact_fb';
+		$this->imageset_keys['icons'][] = 'icon_contact_gr';
+		$this->imageset_keys['icons'][] = 'icon_contact_li';
+		$this->imageset_keys['icons'][] = 'icon_contact_ms';
+		$this->imageset_keys['icons'][] = 'icon_contact_netlog';
+		$this->imageset_keys['icons'][] = 'icon_contact_twit';]]></action>
+			</edit>
+		</open>
+		<open src="includes/acp/acp_users.php">
+			<edit>
+				<find><![CDATA[				$data['user_birthday']	= sprintf('%2d-%2d-%4d', $data['bday_day'], $data['bday_month'], $data['bday_year']);]]></find>
+				<action type="after-add"><![CDATA[
+				$user->add_lang('mods/social_networking_buttons');
+				$data['bebo'] = request_var('bebo', $user_row['user_bebo']);
+				$data['blogger'] = request_var('blogger', $user_row['user_blogger']);
+				$data['facebook'] = request_var('facebook', $user_row['user_facebook']);
+				$data['goodreads'] = request_var('goodreads', $user_row['user_goodreads']);
+				$data['linkedin'] = request_var('linkedin', $user_row['user_linkedin']);
+				$data['myspace'] = request_var('myspace', $user_row['user_myspace']);
+				$data['netlog'] = request_var('netlog', $user_row['user_netlog']);
+				$data['twitter'] = request_var('twitter', $user_row['user_twitter']);
+				]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[						'yim'			=> array('string', true, 5, 255),]]></find>
+				<action type="after-add"><![CDATA[						'bebo'				=> array('string', true, 4, 255),
+						'blogger'			=> array(
+							array('string', true, 12, 255),
+							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),
+						'facebook'			=> array(
+							array('string', true, 12, 255),
+							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),
+						'goodreads'			=> array(
+							array('string', true, 12, 255),
+							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),
+						'linkedin'			=> array(
+							array('string', true, 12, 255),
+							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),
+						'myspace'			=> array('string', true, 4, 255),
+						'netlog'			=> array(
+							array('string', true, 12, 255),
+							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),
+						'twitter'			=> array('string', true, 4, 255),]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[						);]]></find>
+				<action type="after-add"><![CDATA[
+						$sql_ary['user_bebo'] = $data['bebo'];
+						$sql_ary['user_blogger'] = $data['blogger'];
+						$sql_ary['user_facebook'] = $data['facebook'];
+						$sql_ary['user_goodreads'] = $data['goodreads'];
+						$sql_ary['user_linkedin'] = $data['linkedin'];
+						$sql_ary['user_myspace'] = $data['myspace'];
+						$sql_ary['user_netlog'] = $data['netlog'];
+						$sql_ary['user_twitter'] = $data['twitter'];]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[				);]]></find>
+				<action type="after-add"><![CDATA[
+				$template->assign_var('BEBO', $data['bebo']);
+				$template->assign_var('BLOGGER', $data['blogger']);
+				$template->assign_var('FACEBOOK', $data['facebook']);
+				$template->assign_var('GOODREADS', $data['goodreads']);
+				$template->assign_var('LINKEDIN', $data['linkedin']);
+				$template->assign_var('MYSPACE', $data['myspace']);
+				$template->assign_var('NETLOG', $data['netlog']);
+				$template->assign_var('TWITTER', $data['twitter']);]]></action>
+			</edit>
+		</open>
+		<open src="includes/ucp/ucp_pm_viewmessage.php">
+			<edit>
+				<find><![CDATA[	);]]></find>
+				<action type="after-add"><![CDATA[	$user->add_lang('mods/social_networking_buttons');
+	$template->assign_var('U_BEBO_SN', ($user_info['user_bebo']) ? $user_info['user_bebo'] : '');
+	$template->assign_var('U_BLOGGER_SN', ($user_info['user_blogger']) ? $user_info['user_blogger'] : '');
+	$template->assign_var('U_FACEBOOK_SN', ($user_info['user_facebook']) ? $user_info['user_facebook'] : '');
+	$template->assign_var('U_GOODREADS_SN', ($user_info['user_goodreads']) ? $user_info['user_goodreads'] : '');
+	$template->assign_var('U_LINKEDIN_SN', ($user_info['user_linkedin']) ? $user_info['user_linkedin'] : '');
+	$template->assign_var('U_NETLOG_SN', ($user_info['user_netlog']) ? $user_info['user_netlog'] : '');
+	$template->assign_var('U_MYSPACE_SN', ($user_info['user_myspace']) ? $user_info['user_myspace'] : '');
+	$template->assign_var('U_TWITTER_SN', ($user_info['user_twitter']) ? $user_info['user_twitter'] : '');]]></action>
+			</edit>
+		</open>
+
+
+		<open src="includes/ucp/ucp_profile.php">
+			<edit>
+				<find><![CDATA[					'interests'		=> utf8_normalize_nfc(request_var('interests', $user->data['user_interests'], true)),
+				);]]></find>
+				<action type="after-add"><![CDATA[
+				$user->add_lang('mods/social_networking_buttons');
+				$data['bebo'] = request_var('bebo', $user->data['user_bebo']);
+				$data['blogger'] = request_var('blogger', $user->data['user_blogger']);
+				$data['facebook'] = request_var('facebook', $user->data['user_facebook']);
+				$data['goodreads'] = request_var('goodreads', $user->data['user_goodreads']);
+				$data['linkedin'] = request_var('linkedin', $user->data['user_linkedin']);
+				$data['netlog'] = request_var('netlog', $user->data['user_netlog']);
+				$data['myspace'] = request_var('myspace', $user->data['user_myspace']);
+				$data['twitter'] = request_var('twitter', $user->data['user_twitter']);
+				]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[						'yim'			=> array('string', true, 5, 255),]]></find>
+				<action type="after-add"><![CDATA[                      	'bebo'			=> array('string', true, 4, 255),
+						'blogger'		=> array(
+							array('string', true, 12, 255),
+							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),
+						'facebook'		=> array(
+							array('string', true, 12, 255),
+							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),
+						'goodreads'		=> array(
+							array('string', true, 12, 255),
+							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),
+						'linkedin'		=> array(
+							array('string', true, 12, 255),
+							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),
+						'myspace'      		=> array('string', true, 4, 255),
+						'netlog'		=> array(
+							array('string', true, 12, 255),
+							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),
+						'twitter'   		=> array('string', true, 4, 255),]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[							'user_notify_type'	=> $data['notify'],
+						);]]></find>
+				<action type="after-add"><![CDATA[
+						$sql_ary['user_bebo'] = $data['bebo'];
+						$sql_ary['user_blogger'] = $data['blogger'];
+						$sql_ary['user_facebook'] = $data['facebook'];
+						$sql_ary['user_goodreads'] = $data['goodreads'];
+						$sql_ary['user_linkedin'] = $data['linkedin'];
+						$sql_ary['user_myspace'] = $data['myspace'];
+						$sql_ary['user_netlog'] = $data['netlog'];
+						$sql_ary['user_twitter'] = $data['twitter'];
+						]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[					'INTERESTS'	=> $data['interests'],
+				));]]></find>
+				<action type="after-add"><![CDATA[
+				$template->assign_var('BEBO', $data['bebo']);
+				$template->assign_var('BLOGGER', $data['blogger']);
+				$template->assign_var('FACEBOOK', $data['facebook']);
+				$template->assign_var('GOODREADS', $data['goodreads']);
+				$template->assign_var('LINKEDIN', $data['linkedin']);
+				$template->assign_var('MYSPACE', $data['myspace']);
+				$template->assign_var('NETLOG', $data['netlog']);
+				$template->assign_var('TWITTER', $data['twitter']);
+				]]></action>
+			</edit>
+		</open>
+		
+		<open src="styles/prosilver/imageset/imageset.cfg">
+			<edit>
+				<find><![CDATA[img_icon_contact_msnm = icon_contact_msnm.gif*20*20]]></find>
+				<action type="after-add"><![CDATA[img_icon_contact_bebo = icon_contact_bebo.gif*20*20
+img_icon_contact_blogger = icon_contact_blogger.gif*20*20
+img_icon_contact_fb = icon_contact_fb.gif*20*20
+img_icon_contact_gr = icon_contact_gr.gif*20*20
+img_icon_contact_li = icon_contact_li.gif*20*20
+img_icon_contact_ms = icon_contact_ms.gif*20*20
+img_icon_contact_netlog = icon_contact_netlog.gif*20*20
+img_icon_contact_twit = icon_contact_twit.gif*20*20]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/memberlist_view.html">
+			<edit>
+				<find><![CDATA[		<!-- IF U_JABBER and S_JABBER_ENABLED --><dt>{L_JABBER}:</dt> <dd><a href="{U_JABBER}" onclick="popup(this.href, 550, 320); return false;">{L_SEND_JABBER_MESSAGE}</a></dd><!-- ELSEIF USER_JABBER --><dt>{L_JABBER}:</dt> <dd>{USER_JABBER}</dd><!-- ENDIF -->]]></find>
+				<action type="after-add"><![CDATA[		<!-- IF USER_BEBO_SN --><dt>{L_BEBO}:</dt> <dd><a href="http://www.bebo.com/{USER_BEBO_SN}" title="{L_VIEW_BEBO}: {USER_BEBO_SN}">{L_VIEW_BEBO}</a></dd><!-- ENDIF -->	
+		<!-- IF USER_BLOGGER_SN --><dt>{L_BLOGGER}:</dt> <dd><a href="{USER_BLOGGER_SN}" title="{L_VIEW_BLOGGER}: {USER_BLOGGER_SN}">{L_VIEW_BLOGGER}</a></dd><!-- ENDIF -->
+		<!-- IF USER_FACEBOOK_SN --><dt>{L_FACEBOOK}:</dt> <dd><a href="{USER_FACEBOOK_SN}" title="{L_VIEW_FACEBOOK}: {USER_FACEBOOK_SN}">{L_VIEW_FACEBOOK}</a></dd><!-- ENDIF -->
+		<!-- IF USER_GOODREADS_SN --><dt>{L_GOODREADS}:</dt> <dd><a href="{USER_GOODREADS_SN}" title="{L_VIEW_GOODREADS}: {USER_GOODREADS_SN}">{L_VIEW_GOODREADS}</a></dd><!-- ENDIF -->
+		<!-- IF USER_LINKEDIN_SN --><dt>{L_LINKEDIN}:</dt> <dd><a href="{USER_LINKEDIN_SN}" title="{L_VIEW_LINKEDIN}: {USER_LINKEDIN_SN}">{L_VIEW_LINKEDIN}</a></dd><!-- ENDIF -->
+		<!-- IF USER_MYSPACE_SN --><dt>{L_MYSPACE}:</dt> <dd><a href="http://www.myspace.com/{USER_MYSPACE_SN}" title="{L_VIEW_MYSPACE}: {USER_MYSPACE_SN}">{L_VIEW_MYSPACE}</a></dd><!-- ENDIF -->
+		<!-- IF USER_NETLOG_SN --><dt>{L_NETLOG}:</dt> <dd><a href="{USER_NETLOG_SN}" title="{L_VIEW_NETLOG}: {USER_NETLOG_SN}">{L_VIEW_NETLOG}</a></dd><!-- ENDIF -->
+		<!-- IF USER_TWITTER_SN --><dt>{L_TWITTER}:</dt> <dd><a href="http://www.twitter.com/{USER_TWITTER_SN}" title="{L_VIEW_TWITTER}: {USER_TWITTER_SN}">{L_VIEW_TWITTER}</a></dd><!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/ucp_pm_viewmessage.html">
+			<edit>
+				<find><![CDATA[		<!-- IF U_PM or U_EMAIL or U_WWW or U_MSN or U_ICQ or U_YIM or U_AIM or U_JABBER -->]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[U_JABBER]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ or U_BEBO_SN or U_BLOGGER_SN or U_FACEBOOK_SN or U_GOODREADS_SN or U_LINKEDIN_SN or U_MYSPACE_SN or U_NETLOG_SN or U_TWITTER_SN]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[			<!-- IF U_JABBER --><li class="jabber-icon"><a href="{U_JABBER}" onclick="popup(this.href, 550, 320); return false;" title="{L_JABBER}"><span>{L_JABBER}</span></a></li><!-- ENDIF -->]]></find>
+				<action type="after-add"><![CDATA[			<!-- IF U_BEBO_SN --><li class="bebosn-icon"><a href="http://www.bebo.com/{U_BEBO_SN}" title="{L_BEBO}"><span>{L_BEBO}</span></a></li><!-- ENDIF -->
+			<!-- IF U_BLOGGER_SN --><li class="bloggersn-icon"><a href="{U_BLOGGER_SN}" title="{L_BLOGGER}"><span>{L_BLOGGER}</span></a></li><!-- ENDIF -->
+			<!-- IF U_FACEBOOK_SN --><li class="facebooksn-icon"><a href="{U_FACEBOOK_SN}" title="{L_FACEBOOK}"><span>{L_FACEBOOK}</span></a></li><!-- ENDIF -->
+			<!-- IF U_GOODREADS_SN --><li class="goodreadssn-icon"><a href="{U_GOODREADS_SN}" title="{L_GOODREADS}"><span>{L_GOODREADS}</span></a></li><!-- ENDIF -->
+			<!-- IF U_LINKEDIN_SN --><li class="linkedinsn-icon"><a href="{U_LINKEDIN_SN}" title="{L_LINKEDIN}"><span>{L_LINKEDIN}</span></a></li><!-- ENDIF -->
+			<!-- IF U_MYSPACE_SN --><li class="myspacesn-icon"><a href="http://www.myspace.com/{U_MYSPACE_SN}" title="{L_MYSPACE}"><span>{L_MYSPACE}</span></a></li><!-- ENDIF -->
+			<!-- IF U_NETLOG_SN --><li class="netlogsn-icon"><a href="{U_NETLOG_SN}" title="{L_NETLOG}"><span>{L_NETLOG}</span></a></li><!-- ENDIF -->
+			<!-- IF U_TWITTER_SN --><li class="twittersn-icon"><a href="http://www.twitter.com/{U_TWITTER_SN}" title="{L_TWITTER}"><span>{L_TWITTER}</span></a></li><!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/ucp_profile_profile_info.html">
+			<edit>
+				<find><![CDATA[		<dd><input type="text" name="website" id="website" maxlength="255" value="{WEBSITE}" class="inputbox" /></dd>
+	</dl>]]></find>
+				<action type="after-add"><![CDATA[	<dl>
+		<dt><label for="bebo">{L_UCP_BEBO}:</label><br /><span>{L_BEBO_EXPLAIN}</span></dt>
+		<dd><input type="text" name="bebo" id="bebo" maxlength="255" value="{BEBO}" class="inputbox" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="blogger">{L_UCP_BLOGGER}:</label><br /><span>{L_BLOGGER_EXPLAIN}</span></dt>
+		<dd><input type="text" name="blogger" id="blogger" maxlength="255" value="{BLOGGER}" class="inputbox" /></dd>
+	</dl>		
+	<dl>
+		<dt><label for="facebook">{L_UCP_FACEBOOK}:</label><br /><span>{L_FACEBOOK_EXPLAIN}</span></dt>
+		<dd><input type="text" name="facebook" id="facebook" maxlength="255" value="{FACEBOOK}" class="inputbox" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="goodreads">{L_UCP_GOODREADS}:</label><br /><span>{L_GOODREADS_EXPLAIN}</span></dt>
+		<dd><input type="text" name="goodreads" id="goodreads" maxlength="255" value="{GOODREADS}" class="inputbox" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="linkedin">{L_UCP_LINKEDIN}:</label><br /><span>{L_LINKEDIN_EXPLAIN}</span></dt>
+		<dd><input type="text" name="linkedin" id="linkedin" maxlength="255" value="{LINKEDIN}" class="inputbox" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="myspace">{L_UCP_MYSPACE}:</label><br /><span>{L_MYSPACE_EXPLAIN}</span></dt>
+		<dd><input type="text" name="myspace" id="myspace" maxlength="255" value="{MYSPACE}" class="inputbox" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="netlog">{L_UCP_NETLOG}:</label><br /><span>{L_NETLOG_EXPLAIN}</span></dt>
+		<dd><input type="text" name="netlog" id="netlog" maxlength="255" value="{NETLOG}" class="inputbox" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="twitter">{L_UCP_TWITTER}:</label><br /><span>{L_TWITTER_EXPLAIN}</span></dt>
+		<dd><input type="text" name="twitter" id="twitter" maxlength="15" value="{TWITTER}" class="inputbox" /></dd>
+	</dl>]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/viewtopic_body.html">
+			<edit>
+				<find><![CDATA[		<!-- IF postrow.U_PM or postrow.U_EMAIL or postrow.U_WWW or postrow.U_MSN or postrow.U_ICQ or postrow.U_YIM or postrow.U_AIM or postrow.U_JABBER -->]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[postrow.U_JABBER]]></inline-find>
+					<inline-action type="after-add"><![CDATA[ or postrow.U_BEBO_SN or postrow.U_BLOGGER_SN or postrow.U_FACEBOOK_SN or postrow.U_GOODREADS_SN or postrow.U_LINKEDIN_SN or postrow.U_MYSPACE_SN or postrow.U_NETLOG_SN or postrow.U_TWITTER_SN]]></inline-action>
+				</inline-edit>
+			</edit>
+			<edit>
+				<find><![CDATA[					<!-- IF postrow.U_JABBER --><li class="jabber-icon"><a href="{postrow.U_JABBER}" onclick="popup(this.href, 550, 320); return false;" title="{L_JABBER}"><span>{L_JABBER}</span></a></li><!-- ENDIF -->]]></find>
+				<action type="after-add"><![CDATA[					<!-- IF postrow.U_BEBO_SN --><li class="bebosn-icon"><a href="http://www.bebo.com/{postrow.U_BEBO_SN}"  title="{L_BEBO}"><span>{L_BEBO}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_BLOGGER_SN --><li class="bloggersn-icon"><a href="{postrow.U_BLOGGER_SN}" title="{L_BLOGGER}"><span>{L_BLOGGER}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_FACEBOOK_SN --><li class="facebooksn-icon"><a href="{postrow.U_FACEBOOK_SN}" title="{L_FACEBOOK}"><span>{L_FACEBOOK}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_GOODREADS_SN --><li class="goodreadssn-icon"><a href="{postrow.U_GOODREADS_SN}" title="{L_GOODREADS}"><span>{L_GOODREADS}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_LINKEDIN_SN --><li class="linkedinsn-icon"><a href="{postrow.U_LINKEDIN_SN}" title="{L_LINKEDIN}"><span>{L_LINKEDIN}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_MYSPACE_SN --><li class="myspacesn-icon"><a href="http://www.myspace.com/{postrow.U_MYSPACE_SN}" title="{L_MYSPACE}"><span>{L_MYSPACE}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_NETLOG_SN --><li class="netlogsn-icon"><a href="{postrow.U_NETLOG_SN}" title="{L_NETLOG}"><span>{L_NETLOG}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_TWITTER_SN --><li class="twittersn-icon"><a href="http://www.twitter.com/{postrow.U_TWITTER_SN}" title="{L_TWITTER}"><span>{L_TWITTER}</span></a></li><!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/theme/stylesheet.css">
+			<edit>
+				<find><![CDATA[@import url("colours.css");]]></find>
+				<action type="after-add"><![CDATA[@import url("social_networking_buttons.css");]]></action>
+			</edit>
+		</open>
+		<php-installer><![CDATA[install_social_networking_site_buttons.php]]></php-installer>
+		<diy-instructions lang="en"><![CDATA[Run install_social_networking_site_buttons.php and delete after install.]]></diy-instructions>
+	</action-group>
+</mod>

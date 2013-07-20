@@ -1,0 +1,34 @@
+/* prosilver Social Networking Buttons MOD
+---------------------------------------- */
+
+/* Profile & navigation icons */
+.bebosn-icon, .bebosnsn-icon a			{ background: none top left no-repeat; }
+.bloggersn-icon, .bloggersn-icon a	{ background: none top left no-repeat; }
+.facebooksn-icon, .facebooksn-icon a	{ background: none top left no-repeat; }
+.goodreadssn-icon, .goodreadssn-icon a	{ background: none top left no-repeat; }
+.linkedinsn-icon, .linkedinsn-icon a	{ background: none top left no-repeat; }
+.myspacesn-icon, .myspacesn-icon a	{ background: none top left no-repeat; }
+.netlogsn-icon, .netlogsn-icon a		{ background: none top left no-repeat; }
+.twittersn-icon, .twittersn-icon a	{ background: none top left no-repeat; }
+
+
+/* Set profile icon dimensions */
+ul.profile-icons li.bebosn-icon			{ width: {IMG_ICON_CONTACT_BEBO_WIDTH}px; height: {IMG_ICON_CONTACT_BEBO_HEIGHT}px; }
+ul.profile-icons li.bloggersn-icon	{ width: {IMG_ICON_CONTACT_BLOGGER_WIDTH}px; height: {IMG_ICON_CONTACT_BLOGGER_HEIGHT}px; }
+ul.profile-icons li.facebooksn-icon	{ width: {IMG_ICON_CONTACT_FB_WIDTH}px; height: {IMG_ICON_CONTACT_FB_HEIGHT}px; }
+ul.profile-icons li.goodreadssn-icon	{ width: {IMG_ICON_CONTACT_GR_WIDTH}px; height: {IMG_ICON_CONTACT_GR_HEIGHT}px; }
+ul.profile-icons li.linkedinsn-icon	{ width: {IMG_ICON_CONTACT_LI_WIDTH}px; height: {IMG_ICON_CONTACT_LI_HEIGHT}px; }
+ul.profile-icons li.myspacesn-icon	{ width: {IMG_ICON_CONTACT_MS_WIDTH}px; height: {IMG_ICON_CONTACT_MS_HEIGHT}px; }
+ul.profile-icons li.netlogsn-icon		{ width: {IMG_ICON_CONTACT_NETLOG_WIDTH}px; height: {IMG_ICON_CONTACT_NETLOG_HEIGHT}px; }
+ul.profile-icons li.twittersn-icon	{ width: {IMG_ICON_CONTACT_TWIT_WIDTH}px; height: {IMG_ICON_CONTACT_TWIT_HEIGHT}px; }
+
+
+/* Profile & navigation icons */
+.bebosn-icon, .bebosn-icon a			{ background-image: url("{IMG_ICON_CONTACT_BEBO_SRC}"); }
+.bloggersn-icon, .bloggersn-icon a		{ background-image: url("{IMG_ICON_CONTACT_BLOGGER_SRC}"); }
+.facebooksn-icon, .facebooksn-icon a		{ background-image: url("{IMG_ICON_CONTACT_FB_SRC}"); }
+.goodreadssn-icon, .goodreadssn-icon a	{ background-image: url("{IMG_ICON_CONTACT_GR_SRC}"); }
+.linkedinsn-icon, .linkedinsn-icon a		{ background-image: url("{IMG_ICON_CONTACT_LI_SRC}"); }
+.myspacesn-icon, .myspacesn-icon a		{ background-image: url("{IMG_ICON_CONTACT_MS_SRC}"); }
+.netlogsn-icon, .netlogsn-icon a			{ background-image: url("{IMG_ICON_CONTACT_NETLOG_SRC}"); }
+.twittersn-icon, .twittersn-icon a		{ background-image: url("{IMG_ICON_CONTACT_TWIT_SRC}"); }
