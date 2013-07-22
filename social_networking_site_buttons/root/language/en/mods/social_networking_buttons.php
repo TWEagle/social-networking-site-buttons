@@ -57,6 +57,10 @@ $lang = array_merge($lang, array(
 	'IMG_ICON_CONTACT_MS'			=> 'MySpace',
 	'IMG_ICON_CONTACT_NETLOG'		=> 'Netlog',
 	'IMG_ICON_CONTACT_TWIT'			=> 'Twitter',
+	'IMG_ICON_CONTACT_PINTREST'		=> 'Pinterest',
+	'IMG_ICON_CONTACT_GPLUS'		=> 'Google Plus',
+	'IMG_ICON_CONTACT_TUMBLR'		=> 'Tumblr',
+	'IMG_ICON_CONTACT_FLICKR'		=> 'Flickr',
 ));
 
 // language/*/common.php
@@ -69,15 +73,23 @@ $lang = array_merge($lang, array(
 	'MYSPACE'			=> 'MySpace',
 	'NETLOG'			=> 'Netlog',
 	'TWITTER'			=> 'Twitter',
+	'PINTREST'			=> 'Pinterest',
+	'GOOGLEPLUS'		=> 'Google Plus',
+	'TUMBLR'			=> 'Tumblr',
+	'FLICKR'			=> 'Flickr',
 
 	'BEBO_EXPLAIN'				=> 'Enter your Bebo username <em>only</em>. <br />Example: account name',
 	'BLOGGER_EXPLAIN'			=> 'Enter your Blogger URL here. <br />Example: http://yourblog.blogspot.com',
-	'FACEBOOK_EXPLAIN'			=> 'Enter your public Facebook profile URL. <br />Example: http://www.facebook.com/people/Your_Name/123456789',
+	'FACEBOOK_EXPLAIN'			=> 'Enter your public Facebook profile URL. <br />Example: https://www.facebook.com/Your_Name',
 	'GOODREADS_EXPLAIN'			=> 'Enter your Good Reads profile URL. <br />Example: http://www.goodreads.com/user/show/3029590',
 	'LINKEDIN_EXPLAIN'			=> 'Enter your public LinkedIn profile URL.  <br />Example: http://www.linkedin.com/in/username',
 	'MYSPACE_EXPLAIN'			=> 'Enter your MySpace account name <em>only</em>.  <br />Example: account name',
 	'NETLOG_EXPLAIN'			=> 'Enter your public Netlog profile URL.  <br />Example: http://en.netlog.com/username',
 	'TWITTER_EXPLAIN'			=> 'Enter your Twitter account name <em>only</em>.  <br />Example: account name',
+	'PINTREST_EXPLAIN'			=> 'Enter your Pinterest account name <em>only</em>.  <br />Example: account name',
+	'GOOGLEPLUS_EXPLAIN'		=> 'Enter your Google Plus profile URL. <br />Example: https://plus.google.com/u/0/302959081928237393',
+	'TUMBLR_EXPLAIN'			=> 'Enter your Tumblr profile URL. <br />Example: http://username.tumblr.com/',
+	'FLICKR_EXPLAIN'			=> 'Enter your Flickr profile URL. <br />Example: http://www.flickr.com/photos/username/',
     
 	'WRONG_DATA_BEBO'			=> 'The username you entered is not a valid Bebo user name.',
 	'WRONG_DATA_BLOGGER'		=> 'The blogger address has to be a valid URL, including the protocol. For example http://www.yourblog.blogspot.com.',
@@ -87,6 +99,10 @@ $lang = array_merge($lang, array(
 	'WRONG_DATA_MYSPACE'		=> 'The name you entered is not a valid MySpace account name.',
 	'WRONG_DATA_NETLOG'			=> 'The Netlog address has to be a valid URL, including the protocol. For example http://en.netlog.com/YourName.',
 	'WRONG_DATA_TWITTER'		=> 'The name you entered is not a valid Twitter account name.',
+	'WRONG_DATA_PINTREST'		=> 'The name you entered is not a valid Pinterest account name.',
+	'WRONG_DATA_GOOGLEPLUS'		=> 'The Google Plus address has to be a valid URL, including the protocol. For example https://plus.google.com/u/0/302959081928237393.',
+	'WRONG_DATA_TUMBLR'			=> 'The Tumblr address has to be a valid URL, including the protocol. For example http://username.tumblr.com/.',
+	'WRONG_DATA_FLICKR'			=> 'The Flickr address has to be a valid URL, including the protocol. For example http://www.flickr.com/photos/username/.',
 ));
 
 // language/*/memberlist.php
@@ -99,6 +115,10 @@ $lang = array_merge($lang, array(
 	'VIEW_MYSPACE'			=> 'View MySpace profile',
 	'VIEW_NETLOG'			=> 'View Netlog profile',
 	'VIEW_TWITTER'			=> 'View user’s Twitter page',
+	'VIEW_PINTREST'			=> 'View user’s Pinterest page',
+	'VIEW_GOOGLEPLUS'		=> 'View Google Plus profile',
+	'VIEW_TUMBLR'			=> 'View user’s Tumblr page',
+	'VIEW_FLICKR'			=> 'View user’s Flickr page',
 ));
 
 // language/*/ucp.php
@@ -111,5 +131,9 @@ $lang = array_merge($lang, array(
 	'UCP_MYSPACE'		=> 'MySpace Profile',
 	'UCP_NETLOG'		=> 'Netlog Profile',
 	'UCP_TWITTER'		=> 'Twitter Profile',
+	'UCP_PINTREST'		=> 'Pinterest Profile',
+	'UCP_GOOGLEPLUS'	=> 'Google Plus Profile',
+	'UCP_TUMBLR'		=> 'Tumblr Profile',
+	'UCP_FLICKR'		=> 'Flickr Profile',
 ));
 ?>
