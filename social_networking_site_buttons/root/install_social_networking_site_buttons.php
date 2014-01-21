@@ -52,18 +52,28 @@ $versions = array(
 	'1.0.0'	=> array(
 		// Lets add a new column to the phpbb_users and topics table
 		'table_column_add' => array(
-			array('phpbb_users', 'user_bebo', array('VCHAR', '')),
-			array('phpbb_users', 'user_blogger', array('VCHAR', '')),
-			array('phpbb_users', 'user_facebook', array('VCHAR', '')),
-			array('phpbb_users', 'user_goodreads', array('VCHAR', '')),
-			array('phpbb_users', 'user_linkedin', array('VCHAR', '')),
-			array('phpbb_users', 'user_myspace', array('VCHAR', '')),
-			array('phpbb_users', 'user_netlog', array('VCHAR', '')),
-			array('phpbb_users', 'user_twitter', array('VCHAR', '')),
+			array(USERS_TABLE, 'user_bebo', array('VCHAR', '')),
+			array(USERS_TABLE, 'user_blogger', array('VCHAR', '')),
+			array(USERS_TABLE, 'user_facebook', array('VCHAR', '')),
+			array(USERS_TABLE, 'user_goodreads', array('VCHAR', '')),
+			array(USERS_TABLE, 'user_linkedin', array('VCHAR', '')),
+			array(USERS_TABLE, 'user_myspace', array('VCHAR', '')),
+			array(USERS_TABLE, 'user_netlog', array('VCHAR', '')),
+			array(USERS_TABLE, 'user_twitter', array('VCHAR', '')),
 		),
 	'cache_purge' => array('imageset', 'template', 'theme'),
 	),
-	
+
+	// Version 1.0.1
+	'1.0.1'	=> array(
+		// Lets add a new column to the phpbb_users and topics table
+		'table_column_add' => array(
+			array(USERS_TABLE, 'user_pinterest', array('VCHAR', '')),
+			array(USERS_TABLE, 'user_googleplus', array('VCHAR', '')),
+			array(USERS_TABLE, 'user_tumblr', array('VCHAR', '')),
+			array(USERS_TABLE, 'user_flickr', array('VCHAR', '')),
+		),
+	),
 );
 
 // Include the UMIF Auto file and everything else will be handled automatically.

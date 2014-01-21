@@ -63,7 +63,7 @@ Flickr]]></description>
 		<installation>
 			<level>intermediate</level>
 			<time>600</time>
-			<target-version>3.0.11</target-version>
+			<target-version>3.0.12</target-version>
 		</installation>
 	</header>
 	<action-group>
@@ -97,7 +97,15 @@ Flickr]]></description>
 		'USER_NETLOG_SN'	=> $data['user_netlog'],
 		'U_NETLOG_SN'		=> ($data['user_netlog']) ? urlencode($data['user_netlog']) : '',
 		'USER_TWITTER_SN'	=> $data['user_twitter'],
-		'U_TWITTER_SN'		=> ($data['user_twitter']) ? 'http://www.twitter.com/' . urlencode($data['user_twitter']) : '',]]></action>
+		'U_TWITTER_SN'		=> ($data['user_twitter']) ? 'http://www.twitter.com/' . urlencode($data['user_twitter']) : '',
+		'USER_PINTEREST_SN'	=> $data['user_pinterest'],
+		'U_PINTEREST_SN'		=> ($data['user_pinterest']) ? 'http://www.pinterest.com/' . urlencode($data['user_pinterest']) : '',
+		'USER_GOOGLEPLUS_SN'=> $data['user_googleplus'],
+		'U_GOOGLEPLUS_SN'	=> ($data['user_googleplus']) ? urlencode($data['user_googleplus']) : '',
+		'USER_TUMBLR_SN'	=> $data['user_tumblr'],
+		'U_TUMBLR_SN'		=> ($data['user_tumblr']) ? urlencode($data['user_tumblr']) : '',
+		'USER_FLICKR_SN'	=> $data['user_flickr'],
+		'U_FLICKR_SN'		=> ($data['user_flickr']) ? urlencode($data['user_flickr']) : '',]]></action>
 			</edit>
 		</open>
 		<open src="viewtopic.php">
@@ -112,7 +120,11 @@ $template->assign_var('GOODREADS_IMG', $user->img('icon_contact_gr', 'GOODREADS'
 $template->assign_var('LINKEDIN_IMG', $user->img('icon_contact_li', 'LINKEDIN'));
 $template->assign_var('MYSPACE_IMG', $user->img('icon_contact_ms', 'MYSPACE'));
 $template->assign_var('NETLOG_IMG', $user->img('icon_contact_netlog', 'NETLOG'));
-$template->assign_var('TWITTER_IMG', $user->img('icon_contact_twit', 'TWITTER'));]]></action>
+$template->assign_var('TWITTER_IMG', $user->img('icon_contact_twit', 'TWITTER'));
+$template->assign_var('PINTEREST_IMG', $user->img('icon_contact_pinterest', 'PINTEREST'));
+$template->assign_var('GOOGLEPLUS_IMG', $user->img('icon_contact_googleplus', 'GOOGLEPLUS'));
+$template->assign_var('TUMBLR_IMG', $user->img('icon_contact_tumblr', 'TUMBLR'));
+$template->assign_var('FLICKR_IMG', $user->img('icon_contact_flickr', 'FLICKR'));]]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[				'allow_pm'			=> 0,
@@ -124,7 +136,11 @@ $user_cache[$poster_id]['goodreads'] = '';
 $user_cache[$poster_id]['linkedin'] = '';
 $user_cache[$poster_id]['myspace'] = '';
 $user_cache[$poster_id]['netlog'] = '';
-$user_cache[$poster_id]['twitter'] = '';]]></action>
+$user_cache[$poster_id]['twitter'] = '';
+$user_cache[$poster_id]['pinterest'] = '';
+$user_cache[$poster_id]['googleplus'] = '';
+$user_cache[$poster_id]['tumblr'] = '';
+$user_cache[$poster_id]['flickr'] = '';]]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[				'author_profile'	=> get_username_string('profile', $poster_id, $row['username'], $row['user_colour']),
@@ -137,7 +153,11 @@ $user_cache[$poster_id]['twitter'] = '';]]></action>
 			$user_cache[$poster_id]['linkedin'] = $row['user_linkedin'];
 			$user_cache[$poster_id]['myspace'] = urlencode($row['user_myspace']);
 			$user_cache[$poster_id]['netlog'] = $row['user_netlog'];
-			$user_cache[$poster_id]['twitter'] = urlencode($row['user_twitter']);]]></action>
+			$user_cache[$poster_id]['twitter'] = urlencode($row['user_twitter']);
+			$user_cache[$poster_id]['pinterest'] = urlencode($row['user_pinterest']);
+			$user_cache[$poster_id]['googleplus'] = $row['user_googleplus'];
+			$user_cache[$poster_id]['tumblr'] = $row['user_tumblr'];
+			$user_cache[$poster_id]['flickr'] = $row['user_flickr'];]]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[		'L_IGNORE_POST'		=> ($row['hide_post']) ? sprintf($user->lang['POST_BY_FOE'], get_username_string('full', $poster_id, $row['username'], $row['user_colour'], $row['post_username']), '<a href="' . $viewtopic_url . "&amp;p={$row['post_id']}&amp;view=show#p{$row['post_id']}" . '">', '</a>') : '',
@@ -150,7 +170,11 @@ $user_cache[$poster_id]['twitter'] = '';]]></action>
 	$postrow['U_LINKEDIN_SN'] = $user_cache[$poster_id]['linkedin'];
 	$postrow['U_MYSPACE_SN'] = $user_cache[$poster_id]['myspace'];
 	$postrow['U_NETLOG_SN'] = $user_cache[$poster_id]['netlog'];
-	$postrow['U_TWITTER_SN'] = $user_cache[$poster_id]['twitter'];]]></action>
+	$postrow['U_TWITTER_SN'] = $user_cache[$poster_id]['twitter'];
+	$postrow['U_PINTEREST_SN'] = $user_cache[$poster_id]['pinterest'];
+	$postrow['U_GOOGLEPLUS_SN'] = $user_cache[$poster_id]['googleplus'];
+	$postrow['U_TUMBLR_SN'] = $user_cache[$poster_id]['tumblr'];
+	$postrow['U_FLICKR_SN'] = $user_cache[$poster_id]['flickr'];]]></action>
 			</edit>
 		</open>
 		<open src="adm/style/acp_users_profile.html">
@@ -188,6 +212,22 @@ $user_cache[$poster_id]['twitter'] = '';]]></action>
 	<dl>
 		<dt><label for="twitter">{L_UCP_TWITTER}:</label></dt>
 		<dd><input type="text" name="twitter" id="twitter" value="{TWITTER}" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="pinterest">{L_UCP_PINTEREST}:</label></dt>
+		<dd><input type="text" name="pinterest" id="pinterest" value="{PINTEREST}" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="googleplus">{L_UCP_GOOGLEPLUS}:</label></dt>
+		<dd><input type="text" name="googleplus" id="googleplus" value="{GOOGLEPLUS}" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="tumblr">{L_UCP_TUMBLR}:</label></dt>
+		<dd><input type="text" name="tumblr" id="tumblr" value="{TUMBLR}" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="flickr">{L_UCP_FLICKR}:</label></dt>
+		<dd><input type="text" name="flickr" id="flickr" value="{FLICKR}" /></dd>
 	</dl>]]></action>
 			</edit>
 		</open>
@@ -203,7 +243,11 @@ $user_cache[$poster_id]['twitter'] = '';]]></action>
 		$this->imageset_keys['icons'][] = 'icon_contact_li';
 		$this->imageset_keys['icons'][] = 'icon_contact_ms';
 		$this->imageset_keys['icons'][] = 'icon_contact_netlog';
-		$this->imageset_keys['icons'][] = 'icon_contact_twit';]]></action>
+		$this->imageset_keys['icons'][] = 'icon_contact_twit';
+		$this->imageset_keys['icons'][] = 'icon_contact_pinterest';
+		$this->imageset_keys['icons'][] = 'icon_contact_googleplus';
+		$this->imageset_keys['icons'][] = 'icon_contact_tumblr';
+		$this->imageset_keys['icons'][] = 'icon_contact_flickr';]]></action>
 			</edit>
 		</open>
 		<open src="includes/acp/acp_users.php">
@@ -219,6 +263,10 @@ $user_cache[$poster_id]['twitter'] = '';]]></action>
 				$data['myspace'] = request_var('myspace', $user_row['user_myspace']);
 				$data['netlog'] = request_var('netlog', $user_row['user_netlog']);
 				$data['twitter'] = request_var('twitter', $user_row['user_twitter']);
+				$data['pinterest'] = request_var('pinterest', $user_row['user_pinterest']);
+				$data['googleplus'] = request_var('googleplus', $user_row['user_googleplus']);
+				$data['tumblr'] = request_var('tumblr', $user_row['user_tumblr']);
+				$data['flickr'] = request_var('flickr', $user_row['user_flickr']);
 				]]></action>
 			</edit>
 			<edit>
@@ -240,7 +288,18 @@ $user_cache[$poster_id]['twitter'] = '';]]></action>
 						'netlog'			=> array(
 							array('string', true, 12, 255),
 							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),
-						'twitter'			=> array('string', true, 4, 255),]]></action>
+						'twitter'			=> array('string', true, 4, 255),
+						'pinterest'			=> array('string', true, 4, 255),
+						'googleplus'			=> array(
+							array('string', true, 12, 255),
+							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),
+						'tumblr'			=> array(
+							array('string', true, 12, 255),
+							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),
+						'flickr'			=> array(
+							array('string', true, 12, 255),
+							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),
+						]]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[						);]]></find>
@@ -252,7 +311,11 @@ $user_cache[$poster_id]['twitter'] = '';]]></action>
 						$sql_ary['user_linkedin'] = $data['linkedin'];
 						$sql_ary['user_myspace'] = $data['myspace'];
 						$sql_ary['user_netlog'] = $data['netlog'];
-						$sql_ary['user_twitter'] = $data['twitter'];]]></action>
+						$sql_ary['user_twitter'] = $data['twitter'];
+						$sql_ary['user_pinterest'] = $data['pinterest'];
+						$sql_ary['user_googleplus'] = $data['googleplus'];
+						$sql_ary['user_tumblr'] = $data['tumblr'];
+						$sql_ary['user_flickr'] = $data['flickr'];]]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[				);]]></find>
@@ -264,7 +327,11 @@ $user_cache[$poster_id]['twitter'] = '';]]></action>
 				$template->assign_var('LINKEDIN', $data['linkedin']);
 				$template->assign_var('MYSPACE', $data['myspace']);
 				$template->assign_var('NETLOG', $data['netlog']);
-				$template->assign_var('TWITTER', $data['twitter']);]]></action>
+				$template->assign_var('TWITTER', $data['twitter']);
+				$template->assign_var('PINTEREST', $data['pinterest']);
+				$template->assign_var('GOOGLEPLUS', $data['googleplus']);
+				$template->assign_var('TUMBLR', $data['tumblr']);
+				$template->assign_var('FLICKR', $data['flickr']);]]></action>
 			</edit>
 		</open>
 		<open src="includes/ucp/ucp_pm_viewmessage.php">
@@ -278,7 +345,11 @@ $user_cache[$poster_id]['twitter'] = '';]]></action>
 	$template->assign_var('U_LINKEDIN_SN', ($user_info['user_linkedin']) ? $user_info['user_linkedin'] : '');
 	$template->assign_var('U_NETLOG_SN', ($user_info['user_netlog']) ? $user_info['user_netlog'] : '');
 	$template->assign_var('U_MYSPACE_SN', ($user_info['user_myspace']) ? $user_info['user_myspace'] : '');
-	$template->assign_var('U_TWITTER_SN', ($user_info['user_twitter']) ? $user_info['user_twitter'] : '');]]></action>
+	$template->assign_var('U_TWITTER_SN', ($user_info['user_twitter']) ? $user_info['user_twitter'] : '');
+	$template->assign_var('U_PINTEREST_SN', ($user_info['user_pinterest']) ? $user_info['user_pinterest'] : '');
+	$template->assign_var('U_GOOGLEPLUS_SN', ($user_info['user_googleplus']) ? $user_info['user_googleplus'] : '');
+	$template->assign_var('U_TUMBLR_SN', ($user_info['user_tumblr']) ? $user_info['user_tumblr'] : '');
+	$template->assign_var('U_FLICKR_SN', ($user_info['user_flickr']) ? $user_info['user_flickr'] : '');]]></action>
 			</edit>
 		</open>
 
@@ -297,6 +368,10 @@ $user_cache[$poster_id]['twitter'] = '';]]></action>
 				$data['netlog'] = request_var('netlog', $user->data['user_netlog']);
 				$data['myspace'] = request_var('myspace', $user->data['user_myspace']);
 				$data['twitter'] = request_var('twitter', $user->data['user_twitter']);
+				$data['pinterest'] = request_var('pinterest', $user->data['user_pinterest']);
+				$data['googleplus'] = request_var('googleplus', $user->data['user_googleplus']);
+				$data['tumblr'] = request_var('tumblr', $user->data['user_tumblr']);
+				$data['flickr'] = request_var('flickr', $user->data['user_flickr']);
 				]]></action>
 			</edit>
 			<edit>
@@ -318,7 +393,17 @@ $user_cache[$poster_id]['twitter'] = '';]]></action>
 						'netlog'		=> array(
 							array('string', true, 12, 255),
 							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),
-						'twitter'   		=> array('string', true, 4, 255),]]></action>
+						'twitter'   		=> array('string', true, 4, 255),
+						'pinterest'			=> array('string', true, 4, 255),
+						'googleplus'			=> array(
+							array('string', true, 12, 255),
+							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),
+						'tumblr'			=> array(
+							array('string', true, 12, 255),
+							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),
+						'flickr'			=> array(
+							array('string', true, 12, 255),
+							array('match', true, '#^http[s]?://(.*?\.)*?[a-z0-9\-]+\.[a-z]{2,4}#i')),]]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[							'user_notify_type'	=> $data['notify'],
@@ -332,6 +417,10 @@ $user_cache[$poster_id]['twitter'] = '';]]></action>
 						$sql_ary['user_myspace'] = $data['myspace'];
 						$sql_ary['user_netlog'] = $data['netlog'];
 						$sql_ary['user_twitter'] = $data['twitter'];
+						$sql_ary['user_pinterest'] = $data['pinterest'];
+						$sql_ary['user_googleplus'] = $data['googleplus'];
+						$sql_ary['user_tumblr'] = $data['tumblr'];
+						$sql_ary['user_flickr'] = $data['flickr'];
 						]]></action>
 			</edit>
 			<edit>
@@ -346,6 +435,10 @@ $user_cache[$poster_id]['twitter'] = '';]]></action>
 				$template->assign_var('MYSPACE', $data['myspace']);
 				$template->assign_var('NETLOG', $data['netlog']);
 				$template->assign_var('TWITTER', $data['twitter']);
+				$template->assign_var('PINTEREST', $data['pinterest']);
+				$template->assign_var('GOOGLEPLUS', $data['googleplus']);
+				$template->assign_var('TUMBLR', $data['tumblr']);
+				$template->assign_var('FLICKR', $data['flickr']);
 				]]></action>
 			</edit>
 		</open>
@@ -360,7 +453,11 @@ img_icon_contact_gr = icon_contact_gr.gif*20*20
 img_icon_contact_li = icon_contact_li.gif*20*20
 img_icon_contact_ms = icon_contact_ms.gif*20*20
 img_icon_contact_netlog = icon_contact_netlog.gif*20*20
-img_icon_contact_twit = icon_contact_twit.gif*20*20]]></action>
+img_icon_contact_twit = icon_contact_twit.gif*20*20
+img_icon_contact_pinterest = icon_contact_pinterest.gif*20*20
+img_icon_contact_googleplus = icon_contact_googleplus.gif*20*20
+img_icon_contact_tumblr = icon_contact_tumblr.gif*20*20
+img_icon_contact_flickr = icon_contact_flickr.gif*20*20]]></action>
 			</edit>
 		</open>
 		<open src="styles/prosilver/template/memberlist_view.html">
@@ -373,7 +470,11 @@ img_icon_contact_twit = icon_contact_twit.gif*20*20]]></action>
 		<!-- IF USER_LINKEDIN_SN --><dt>{L_LINKEDIN}:</dt> <dd><a href="{USER_LINKEDIN_SN}" title="{L_VIEW_LINKEDIN}: {USER_LINKEDIN_SN}">{L_VIEW_LINKEDIN}</a></dd><!-- ENDIF -->
 		<!-- IF USER_MYSPACE_SN --><dt>{L_MYSPACE}:</dt> <dd><a href="http://www.myspace.com/{USER_MYSPACE_SN}" title="{L_VIEW_MYSPACE}: {USER_MYSPACE_SN}">{L_VIEW_MYSPACE}</a></dd><!-- ENDIF -->
 		<!-- IF USER_NETLOG_SN --><dt>{L_NETLOG}:</dt> <dd><a href="{USER_NETLOG_SN}" title="{L_VIEW_NETLOG}: {USER_NETLOG_SN}">{L_VIEW_NETLOG}</a></dd><!-- ENDIF -->
-		<!-- IF USER_TWITTER_SN --><dt>{L_TWITTER}:</dt> <dd><a href="http://www.twitter.com/{USER_TWITTER_SN}" title="{L_VIEW_TWITTER}: {USER_TWITTER_SN}">{L_VIEW_TWITTER}</a></dd><!-- ENDIF -->]]></action>
+		<!-- IF USER_TWITTER_SN --><dt>{L_TWITTER}:</dt> <dd><a href="http://www.twitter.com/{USER_TWITTER_SN}" title="{L_VIEW_TWITTER}: {USER_TWITTER_SN}">{L_VIEW_TWITTER}</a></dd><!-- ENDIF -->
+		<!-- IF USER_PINTEREST_SN --><dt>{L_PINTEREST}:</dt> <dd><a href="http://www.pinterest.com/{USER_PINTEREST_SN}" title="{L_VIEW_PINTEREST}: {USER_PINTEREST_SN}">{L_VIEW_PINTEREST}</a></dd><!-- ENDIF -->
+		<!-- IF USER_GOOGLEPLUS_SN --><dt>{L_GOOGLEPLUS}:</dt> <dd><a href="{USER_GOOGLEPLUS_SN}" title="{L_VIEW_GOOGLEPLUS}: {USER_GOOGLEPLUS_SN}">{L_VIEW_GOOGLEPLUS}</a></dd><!-- ENDIF -->
+		<!-- IF USER_TUMBLR_SN --><dt>{L_TUMBLR}:</dt> <dd><a href="{USER_TUMBLR_SN}" title="{L_VIEW_TUMBLR}: {USER_TUMBLR_SN}">{L_VIEW_TUMBLR}</a></dd><!-- ENDIF -->
+		<!-- IF USER_FLICKR_SN --><dt>{L_FLICKR}:</dt> <dd><a href="{USER_FLICKR_SN}" title="{L_VIEW_FLICKR}: {USER_FLICKR_SN}">{L_VIEW_FLICKR}</a></dd><!-- ENDIF -->]]></action>
 			</edit>
 		</open>
 		<open src="styles/prosilver/template/ucp_pm_viewmessage.html">
@@ -381,7 +482,7 @@ img_icon_contact_twit = icon_contact_twit.gif*20*20]]></action>
 				<find><![CDATA[		<!-- IF U_PM or U_EMAIL or U_WWW or U_MSN or U_ICQ or U_YIM or U_AIM or U_JABBER -->]]></find>
 				<inline-edit>
 					<inline-find><![CDATA[U_JABBER]]></inline-find>
-					<inline-action type="after-add"><![CDATA[ or U_BEBO_SN or U_BLOGGER_SN or U_FACEBOOK_SN or U_GOODREADS_SN or U_LINKEDIN_SN or U_MYSPACE_SN or U_NETLOG_SN or U_TWITTER_SN]]></inline-action>
+					<inline-action type="after-add"><![CDATA[ or U_BEBO_SN or U_BLOGGER_SN or U_FACEBOOK_SN or U_GOODREADS_SN or U_LINKEDIN_SN or U_MYSPACE_SN or U_NETLOG_SN or U_TWITTER_SN or U_PINTEREST_SN or U_GOOGLEPLUS_SN or U_TUMBLR_SN or U_FLICKR_SN]]></inline-action>
 				</inline-edit>
 			</edit>
 			<edit>
@@ -393,7 +494,11 @@ img_icon_contact_twit = icon_contact_twit.gif*20*20]]></action>
 			<!-- IF U_LINKEDIN_SN --><li class="linkedinsn-icon"><a href="{U_LINKEDIN_SN}" title="{L_LINKEDIN}"><span>{L_LINKEDIN}</span></a></li><!-- ENDIF -->
 			<!-- IF U_MYSPACE_SN --><li class="myspacesn-icon"><a href="http://www.myspace.com/{U_MYSPACE_SN}" title="{L_MYSPACE}"><span>{L_MYSPACE}</span></a></li><!-- ENDIF -->
 			<!-- IF U_NETLOG_SN --><li class="netlogsn-icon"><a href="{U_NETLOG_SN}" title="{L_NETLOG}"><span>{L_NETLOG}</span></a></li><!-- ENDIF -->
-			<!-- IF U_TWITTER_SN --><li class="twittersn-icon"><a href="http://www.twitter.com/{U_TWITTER_SN}" title="{L_TWITTER}"><span>{L_TWITTER}</span></a></li><!-- ENDIF -->]]></action>
+			<!-- IF U_TWITTER_SN --><li class="twittersn-icon"><a href="http://www.twitter.com/{U_TWITTER_SN}" title="{L_TWITTER}"><span>{L_TWITTER}</span></a></li><!-- ENDIF -->
+			<!-- IF U_PINTEREST_SN --><li class="pinterestsn-icon"><a href="http://www.pinterest.com/{U_PINTEREST_SN}" title="{L_PINTEREST}"><span>{L_PINTEREST}</span></a></li><!-- ENDIF -->
+			<!-- IF U_GOOGLEPLUS_SN --><li class="googleplussn-icon"><a href="{U_GOOGLEPLUS_SN}" title="{L_GOOGLEPLUS}"><span>{L_GOOGLEPLUS}</span></a></li><!-- ENDIF -->
+			<!-- IF U_TUMBLR_SN --><li class="tumblrsn-icon"><a href="{U_TUMBLR_SN}" title="{L_TUMBLR}"><span>{L_TUMBLR}</span></a></li><!-- ENDIF -->
+			<!-- IF U_FLICKR_SN --><li class="flickrsn-icon"><a href="{U_FLICKR_SN}" title="{L_FLICKR}"><span>{L_FLICKR}</span></a></li><!-- ENDIF -->]]></action>
 			</edit>
 		</open>
 		<open src="styles/prosilver/template/ucp_profile_profile_info.html">
@@ -431,6 +536,22 @@ img_icon_contact_twit = icon_contact_twit.gif*20*20]]></action>
 	<dl>
 		<dt><label for="twitter">{L_UCP_TWITTER}:</label><br /><span>{L_TWITTER_EXPLAIN}</span></dt>
 		<dd><input type="text" name="twitter" id="twitter" maxlength="15" value="{TWITTER}" class="inputbox" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="pinterest">{L_UCP_PINTEREST}:</label><br /><span>{L_PINTEREST_EXPLAIN}</span></dt>
+		<dd><input type="text" name="pinterest" id="pinterest" maxlength="15" value="{PINTEREST}" class="inputbox" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="googleplus">{L_UCP_GOOGLEPLUS}:</label><br /><span>{L_GOOGLEPLUS_EXPLAIN}</span></dt>
+		<dd><input type="text" name="googleplus" id="googleplus" maxlength="255" value="{GOOGLEPLUS}" class="inputbox" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="tumblr">{L_UCP_TUMBLR}:</label><br /><span>{L_TUMBLR_EXPLAIN}</span></dt>
+		<dd><input type="text" name="tumblr" id="tumblr" maxlength="255" value="{TUMBLR}" class="inputbox" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="flickr">{L_UCP_FLICKR}:</label><br /><span>{L_FLICKR_EXPLAIN}</span></dt>
+		<dd><input type="text" name="flickr" id="flickr" maxlength="255" value="{FLICKR}" class="inputbox" /></dd>
 	</dl>]]></action>
 			</edit>
 		</open>
@@ -439,7 +560,7 @@ img_icon_contact_twit = icon_contact_twit.gif*20*20]]></action>
 				<find><![CDATA[		<!-- IF postrow.U_PM or postrow.U_EMAIL or postrow.U_WWW or postrow.U_MSN or postrow.U_ICQ or postrow.U_YIM or postrow.U_AIM or postrow.U_JABBER -->]]></find>
 				<inline-edit>
 					<inline-find><![CDATA[postrow.U_JABBER]]></inline-find>
-					<inline-action type="after-add"><![CDATA[ or postrow.U_BEBO_SN or postrow.U_BLOGGER_SN or postrow.U_FACEBOOK_SN or postrow.U_GOODREADS_SN or postrow.U_LINKEDIN_SN or postrow.U_MYSPACE_SN or postrow.U_NETLOG_SN or postrow.U_TWITTER_SN]]></inline-action>
+					<inline-action type="after-add"><![CDATA[ or postrow.U_BEBO_SN or postrow.U_BLOGGER_SN or postrow.U_FACEBOOK_SN or postrow.U_GOODREADS_SN or postrow.U_LINKEDIN_SN or postrow.U_MYSPACE_SN or postrow.U_NETLOG_SN or postrow.U_TWITTER_SN or postrow.U_PINTEREST_SN or postrow.U_GOOGLEPLUS_SN or postrow.U_TUMBLR_SN or postrow.U_FLICKR_SN]]></inline-action>
 				</inline-edit>
 			</edit>
 			<edit>
@@ -451,7 +572,12 @@ img_icon_contact_twit = icon_contact_twit.gif*20*20]]></action>
 					<!-- IF postrow.U_LINKEDIN_SN --><li class="linkedinsn-icon"><a href="{postrow.U_LINKEDIN_SN}" title="{L_LINKEDIN}"><span>{L_LINKEDIN}</span></a></li><!-- ENDIF -->
 					<!-- IF postrow.U_MYSPACE_SN --><li class="myspacesn-icon"><a href="http://www.myspace.com/{postrow.U_MYSPACE_SN}" title="{L_MYSPACE}"><span>{L_MYSPACE}</span></a></li><!-- ENDIF -->
 					<!-- IF postrow.U_NETLOG_SN --><li class="netlogsn-icon"><a href="{postrow.U_NETLOG_SN}" title="{L_NETLOG}"><span>{L_NETLOG}</span></a></li><!-- ENDIF -->
-					<!-- IF postrow.U_TWITTER_SN --><li class="twittersn-icon"><a href="http://www.twitter.com/{postrow.U_TWITTER_SN}" title="{L_TWITTER}"><span>{L_TWITTER}</span></a></li><!-- ENDIF -->]]></action>
+					<!-- IF postrow.U_TWITTER_SN --><li class="twittersn-icon"><a href="http://www.twitter.com/{postrow.U_TWITTER_SN}" title="{L_TWITTER}"><span>{L_TWITTER}</span></a></li><!-- ENDIF -->
+					
+					<!-- IF postrow.U_PINTEREST_SN --><li class="pinterestsn-icon"><a href="http://www.pinterest.com/{postrow.U_PINTEREST_SN}" title="{L_PINTEREST}"><span>{L_PINTEREST}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_GOOGLEPLUS_SN --><li class="googleplussn-icon"><a href="{postrow.U_GOOGLEPLUS_SN}" title="{L_GOOGLEPLUS}"><span>{L_GOOGLEPLUS}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_TUMBLR_SN --><li class="tumblrsn-icon"><a href="{postrow.U_TUMBLR_SN}" title="{L_TUMBLR}"><span>{L_TUMBLR}</span></a></li><!-- ENDIF -->
+					<!-- IF postrow.U_FLICKR_SN --><li class="flickrsn-icon"><a href="{postrow.U_FLICKR_SN}" title="{L_FLICKR}"><span>{L_FLICKR}</span></a></li><!-- ENDIF -->]]></action>
 			</edit>
 		</open>
 		<open src="styles/prosilver/theme/stylesheet.css">
